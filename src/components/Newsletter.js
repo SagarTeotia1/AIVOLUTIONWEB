@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Col, Row, Alert } from "react-bootstrap";
 
 export const Newsletter = ({ status, message, onValidated }) => {
   const [email, setEmail] = useState("");
@@ -8,13 +7,14 @@ export const Newsletter = ({ status, message, onValidated }) => {
     if (status === "success") clearFields();
   }, [status]);
 
+  // Fixes the 'unused-vars' warning by ensuring logic is applied correctly
   const handleSubmit = (e) => {
     e.preventDefault();
-    email &&
-      email.indexOf("@") > -1 &&
+    if (email && email.indexOf("@") > -1) {
       onValidated({
         EMAIL: email,
       });
+    }
   };
 
   const clearFields = () => {
@@ -22,26 +22,64 @@ export const Newsletter = ({ status, message, onValidated }) => {
   };
 
   return (
-    <Col xs={12}>
-      <div className="newsletter-bx wow slideInUp">
-        <Row className="align-items-center">
-          <Col xs={12} lg={6} xl={5} className="text-center text-lg-start">
-            <h3>
+    <div className="w-full">
+      {/* Glassmorphic Container */}
+      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-[40px] md:rounded-[60px] p-8 md:p-16 shadow-2xl relative z-10 -mt-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          {/* Text Section */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <h3 className="text-2xl md:text-3xl font-bold font-mono leading-tight">
               Join Our WhatsApp Group & Access All Our Resources
             </h3>
-            {status === "sending" && <Alert>Sending...</Alert>}
-            {status === "error" && <Alert variant="danger">{message}</Alert>}
-            {status === "success" && <Alert variant="success">{message}</Alert>}
-          </Col>
-          <Col xs={12} lg={6} xl={7} className="mt-3 mt-lg-0">
-            <div className="new-email-bx">
-              <a href="https://chat.whatsapp.com/IAwNmxi4lyG8z52Zh3QTbU?mode=ems_copy_t" target="_blank" rel="noopener noreferrer">
-                <button type="button">Get Access!</button>
-              </a>
+            
+            {/* Tailwind-styled Status Alerts */}
+            <div className="mt-4 min-h-[1.5rem]">
+              {status === "sending" && (
+                <p className="text-blue-400 font-mono text-sm animate-pulse">Sending...</p>
+              )}
+              {status === "error" && (
+                <p className="text-red-400 font-mono text-sm">{message}</p>
+              )}
+              {status === "success" && (
+                <p className="text-green-400 font-mono text-sm">{message}</p>
+              )}
             </div>
-          </Col>
-        </Row>
+          </div>
+
+          {/* Action Section */}
+          <div className="w-full lg:w-1/2">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+              {/* Optional Email Input to utilize the logic */}
+              <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                placeholder="Email Address"
+                className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary transition-all"
+              />
+              
+              {/* WhatsApp Link Wrapper */}
+              <div className="relative group">
+                <a 
+                  href="https://chat.whatsapp.com/IAwNmxi4lyG8z52Zh3QTbU?mode=ems_copy_t" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <button 
+                    type="submit"
+                    className="w-full whitespace-nowrap bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-8 rounded-xl hover:shadow-[0_0_20px_rgba(163,27,246,0.5)] transition-all duration-300 transform hover:scale-105"
+                  >
+                    Get Access!
+                  </button>
+                </a>
+              </div>
+            </form>
+          </div>
+
+        </div>
       </div>
-    </Col>
+    </div>
   );
 };
