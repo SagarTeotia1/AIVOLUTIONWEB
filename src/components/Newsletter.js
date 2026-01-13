@@ -23,17 +23,16 @@ export const Newsletter = ({ status, message, onValidated }) => {
 
   return (
     <div className="w-full">
-      {/* Glassmorphic Container */}
+  
       <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-[40px] md:rounded-[60px] p-8 md:p-16 shadow-2xl relative z-10 -mt-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-          
-          {/* Text Section */}
+    
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h3 className="text-2xl md:text-3xl font-bold font-mono leading-tight">
               Join Our WhatsApp Group & Access All Our Resources
             </h3>
             
-            {/* Tailwind-styled Status Alerts */}
+    
             <div className="mt-4 min-h-[1.5rem]">
               {status === "sending" && (
                 <p className="text-blue-400 font-mono text-sm animate-pulse">Sending...</p>
@@ -47,10 +46,9 @@ export const Newsletter = ({ status, message, onValidated }) => {
             </div>
           </div>
 
-          {/* Action Section */}
           <div className="w-full lg:w-1/2">
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-              {/* Optional Email Input to utilize the logic */}
+
               <input 
                 type="email" 
                 value={email} 
@@ -59,7 +57,7 @@ export const Newsletter = ({ status, message, onValidated }) => {
                 className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary transition-all"
               />
               
-              {/* WhatsApp Link Wrapper */}
+        
               <div className="relative group">
                 <a 
                   href="https://chat.whatsapp.com/IAwNmxi4lyG8z52Zh3QTbU?mode=ems_copy_t" 

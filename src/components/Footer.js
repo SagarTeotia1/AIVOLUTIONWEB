@@ -7,20 +7,19 @@ export const Footer = () => {
   return (
     <footer className="relative bg-dark pt-24 pb-12 overflow-hidden">
       
-      {/* Optional: Background Glow Effect */}
+  
       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-black via-dark to-transparent z-0 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Newsletter Section - Replaces the old placement */}
         <div className="mb-16">
            <MailchimpForm />
         </div>
 
-        {/* Footer Content */}
+        
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8 border-t border-white/10 pt-8">
           
-          {/* Logo Section */}
+          
           <div className="flex-shrink-0">
             <img 
               src={logo} 
@@ -29,10 +28,8 @@ export const Footer = () => {
             />
           </div>
 
-          {/* Socials & Copyright Section */}
           <div className="text-center sm:text-right">
             
-            {/* Social Icons */}
             <div className="flex justify-center sm:justify-end gap-4 mb-4">
               <SocialIcon href="https://www.linkedin.com/company/aivolutionaries/" icon={navIcon1} />
               <SocialIcon href="https://www.instagram.com/ai.volutions_/" icon={navIcon3} />

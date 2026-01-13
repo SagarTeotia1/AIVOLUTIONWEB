@@ -36,7 +36,6 @@ export const Projects = () => {
   return (
     <section className="relative py-24 bg-dark text-white overflow-hidden" id="projects">
       <div className="container mx-auto px-4 relative z-10">
-        {/* 'once' prop prevents repeated heavy animations during scroll */}
         <TrackVisibility partialVisibility once offset={100}>
           {({ isVisible }) => (
             <div className={isVisible ? "animate__animated animate__fadeIn" : "opacity-0"}>
