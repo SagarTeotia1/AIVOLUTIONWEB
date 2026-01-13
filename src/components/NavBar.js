@@ -24,10 +24,16 @@ export const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Update active link based on URL path if needed
+  // Update active link based on URL path
   useEffect(() => {
     if (location.pathname === '/events') {
       setActiveLink('events');
+    } else if (location.hash === '#skills') {
+      setActiveLink('skills');
+    } else if (location.hash === '#connect') {
+      setActiveLink('connect');
+    } else {
+      setActiveLink('home');
     }
   }, [location]);
 
@@ -64,15 +70,8 @@ export const NavBar = () => {
           <div className="flex space-x-6">
             <NavLink to="/#home" active={activeLink === 'home'} onClick={() => onUpdateActiveLink('home')}>Home</NavLink>
             <NavLink to="/#skills" active={activeLink === 'skills'} onClick={() => onUpdateActiveLink('skills')}>Departments</NavLink>
-            <NavLink to="/#projects" active={activeLink === 'projects'} onClick={() => onUpdateActiveLink('projects')}>Projects</NavLink>
-            {/* Standard Link for Events page */}
-            <a 
-              href="/events" 
-              className={`text-lg font-medium tracking-wide transition-colors duration-300 ${activeLink === 'events' ? "text-secondary font-bold" : "text-gray-300 hover:text-white"}`}
-              onClick={() => onUpdateActiveLink('events')}
-            >
-              Events
-            </a>
+            {/* Removed 'Projects' link since it is now part of Events */}
+            <NavLink to="/events" active={activeLink === 'events'} onClick={() => onUpdateActiveLink('events')}>Events</NavLink>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -94,8 +93,7 @@ export const NavBar = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-dark/95 backdrop-blur-xl border-b border-white/10 shadow-2xl py-6 flex flex-col items-center space-y-6 animate__animated animate__fadeInDown">
           <NavLink to="/#home" active={activeLink === 'home'} onClick={() => onUpdateActiveLink('home')} mobile>Home</NavLink>
           <NavLink to="/#skills" active={activeLink === 'skills'} onClick={() => onUpdateActiveLink('skills')} mobile>Departments</NavLink>
-          <NavLink to="/#projects" active={activeLink === 'projects'} onClick={() => onUpdateActiveLink('projects')} mobile>Projects</NavLink>
-          <a href="/events" className="text-xl text-white font-medium" onClick={() => onUpdateActiveLink('events')}>Events</a>
+          <NavLink to="/events" active={activeLink === 'events'} onClick={() => onUpdateActiveLink('events')} mobile>Events</NavLink>
           
           <div className="flex space-x-4 mt-4">
             <SocialIcon href="https://www.linkedin.com/company/aivolutionaries/" icon={navIcon1} />
@@ -112,7 +110,7 @@ export const NavBar = () => {
   );
 };
 
-// Helper Components for cleaner code
+// Helper Components
 const NavLink = ({ to, active, onClick, children, mobile }) => (
   <HashLink 
     smooth 
