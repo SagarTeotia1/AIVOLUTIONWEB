@@ -3,13 +3,15 @@ import React from 'react';
 import  {NavBar}  from "./components/NavBar";
 import { Banner } from "./components/Banner";
 import { Skills } from "./components/Skills";
-import { Projects } from "./components/Projects";
+import { EventHighlights } from "./components/EventHighlights";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import MouseFollower from './components/MouseFollower';
 import Spline from "@splinetool/react-spline";
 import { Routes, Route } from "react-router-dom";
 import { Events } from "./components/Events";
+import { Sponsors } from "./components/Sponsors";
+import { Vision } from "./components/Vision";
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
             <>
               <Banner />
               <Skills />
-              <Projects />
+              <EventHighlights />
+              <Vision />
+              <Sponsors />
               <Contact />
             </>
           } />
